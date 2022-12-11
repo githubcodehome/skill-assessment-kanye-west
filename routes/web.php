@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\QuoteController::class, 'main'])->name('main');
+Route::get('/favorites', [\App\Http\QuoteController::class, 'favorites'])->name('favorites');
