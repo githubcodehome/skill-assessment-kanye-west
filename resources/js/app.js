@@ -1,10 +1,9 @@
-import { createSSRApp, h } from "vue";
-import { renderToString } from "@vue/server-renderer";
+import {createSSRApp, h} from "vue";
+import {renderToString} from "@vue/server-renderer";
 import {createInertiaApp, Link} from "@inertiajs/inertia-vue3";
 import createServer from "@inertiajs/server";
-import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
-import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
-import { Ziggy } from './ziggy';
+import {resolvePageComponent} from "laravel-vite-plugin/inertia-helpers";
+import {ZiggyVue} from "../../vendor/tightenco/ziggy/dist/vue.m";
 
 const appName = "Laravel";
 
@@ -18,12 +17,12 @@ createServer((page) =>
                 `./Pages/${name}.vue`,
                 import.meta.glob("./Pages/**/*.vue")
             ),
-        setup({   el, app, props, plugin }) {
-            return createSSRApp({ render: () => h(app, props) })
+        setup({el, app, props, plugin}) {
+            return createSSRApp({render: () => h(app, props)})
                 .use(plugin)
                 .component('Link', Link)
                 .use(ZiggyVue, Ziggy)
-               .mount(el)                ;
+                .mount(el);
         },
     })
 );
