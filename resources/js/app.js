@@ -1,28 +1,26 @@
-import {createSSRApp, h} from "vue";
-import {renderToString} from "@vue/server-renderer";
-import {createInertiaApp, Link} from "@inertiajs/inertia-vue3";
-import createServer from "@inertiajs/server";
-import {resolvePageComponent} from "laravel-vite-plugin/inertia-helpers";
-import {ZiggyVue} from "../../vendor/tightenco/ziggy/dist/vue.m";
+import './bootstrap';
+import '../css/app.css';
+import { createApp, h } from 'vue';
+import { createInertiaApp, Head } from '@inertiajs/inertia-vue3';
+import { InertiaProgress } from '@inertiajs/progress';
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
+import { createPinia } from 'pinia';
 
-const appName = "Laravel";
+const pinia = createPinia()
+const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
-createServer((page) =>
-    createInertiaApp({
-        page,
-        render: renderToString,
-        title: (title) => `${title} - ${appName}`,
-        resolve: (name) =>
-            resolvePageComponent(
-                `./Pages/${name}.vue`,
-                import.meta.glob("./Pages/**/*.vue")
-            ),
-        setup({el, app, props, plugin}) {
-            return createSSRApp({render: () => h(app, props)})
-                .use(plugin)
-                .component('Link', Link)
-                .use(ZiggyVue, Ziggy)
-                .mount(el);
-        },
-    })
-);
+createInertiaApp({
+    title: (title) => `${title} - ${appName}`,
+    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+    setup({ el, app, props, plugin }) {
+        return createApp({ render: () => h(app, props) })
+            .use(plugin)
+            .use(ZiggyVue, Ziggy)
+            .component('Head', Head)
+            .use(pinia)
+            .mount(el);
+    },
+});
+
+InertiaProgress.init({ color: '#4B5563' });

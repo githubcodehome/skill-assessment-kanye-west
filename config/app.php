@@ -58,6 +58,8 @@ return [
 
     'asset_url' => env('ASSET_URL'),
 
+    'api_kanye_url' => env('API_KANYE_URL'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

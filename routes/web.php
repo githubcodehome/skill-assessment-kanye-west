@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QuoteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\QuoteController::class, 'main'])->name('main');
-Route::get('/favorites', [\App\Http\QuoteController::class, 'favorites'])->name('favorites');
+Route::get('/', [QuoteController::class, 'main'])->name('main');
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/favorites', [QuoteController::class, 'favorites'])
+        ->name('favorites');
+});
+
+require __DIR__ . '/auth.php';
