@@ -5,10 +5,11 @@ import {onMounted} from 'vue'
 import RefreshButton from "@/Pages/Buttons/RefreshButton.vue";
 import {useDataStore} from "@/stores/data";
 
+const COUNT_QUOTES = 5;
 const prefix = '/api';
 const quotes = ref([]);
 const error = ref(null);
-const counter = ref(5);
+const counter = ref(COUNT_QUOTES);
 const isValid = ref(true)
 const isFavorite = ref(true)
 const favorites = ref([]);
@@ -29,13 +30,13 @@ onMounted(() => {
 });
 
 async function getQuotes() {
-    counter.value = counter.value ? counter.value : 5;
+    counter.value = counter.value ? counter.value : COUNT_QUOTES;
     error.value = null
     isValid.value = false
     quotes.value = [];
     try {
         const q = new URLSearchParams({
-            'count': counter.value ? counter.value : 5
+            'count': counter.value ? counter.value : COUNT_QUOTES
         }).toString();
 
         const url = route('api.get') + `?${q}`;
@@ -62,7 +63,6 @@ async function addFavorite(quote) {
         const url = route('api.add_favorite', {text: quote});
         await axios.post(url);
         favorites.value.push(quote);
-        //quotes.value = quotes.value.filter(e => e !== quote)
         const i = quotes.value.indexOf(quote)
         if (i > -1) {
             quotes.value.splice(i, 1)

@@ -77,7 +77,7 @@ class QuoteService
 
     public function getFavorites()
     {
-        return Favorite::where('user_id', Auth::id())->orderBy('id', 'desc')->get();
+        return Favorite::where('user_id', Auth::id())->orderBy('id', 'desc')->get(['id', 'text', 'user_id']);
     }
 
     public function deleteFavorite(Favorite $favorite): void

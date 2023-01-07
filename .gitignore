@@ -14,3 +14,5 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+/storage/api-docs/api-docs.json
+/resources/js/ziggy.js

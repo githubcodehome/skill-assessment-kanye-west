@@ -30,6 +30,10 @@ class APIQuoteControllerTest extends TestCase
         $response = $this->get(route('api.user'));
         $response->assertStatus(302);
 
+        $response = $this->withHeaders(['Authorization'=>'Bearer '. $result['token']])
+            ->get(route('api.user'));
+        $response->assertOk();
+
         $response = $this->actingAs($user)->get(route('api.user'));
         $response->assertStatus(200);
         $result = $response->decodeResponseJson();

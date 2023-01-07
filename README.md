@@ -134,3 +134,21 @@ If you wish, you may use Yarn instead of NPM:
 
 ./vendor/bin/sail test --group orders
 ```
+
+## About Completed Test Task
+### Used Tech Stack
+PHP 8.1, Laravel 9.19, NPM 9.2.0, NODE v16.19.0, Inertia with SSR
+
+### Added feature: creation quote with image background on Favorites page
+
+![alt text](https://github.com/githubcodehome/skill-assessment-kanye-west/blob/master/public/images/img-login.png)
+![alt text](https://github.com/githubcodehome/skill-assessment-kanye-west/blob/master/public/images/img-auth-main-page.png)
+![alt text](https://github.com/githubcodehome/skill-assessment-kanye-west/blob/master/public/images/img-auth-favorites.png)
+![alt text](https://github.com/githubcodehome/skill-assessment-kanye-west/blob/master/public/images/img-auth-download-quote.png)
+![alt text](https://github.com/githubcodehome/skill-assessment-kanye-west/blob/master/public/images/img-api-docs.png)
+
+Generate Vue routes like in Laravel:
+./vendor/bin/sail artisan ziggy:generate
+
+Generate swagger API documentation available at /api/documentation:
+./vendor/bin/sail artisan l5-swagger:generate
