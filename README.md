@@ -156,7 +156,11 @@ Inertia with SSR
 ![alt text](https://github.com/githubcodehome/skill-assessment-kanye-west/blob/master/public/images/img-api-docs.png)
 
 Generate Vue routes like in Laravel:
-```./vendor/bin/sail artisan ziggy:generate```
+```
+./vendor/bin/sail artisan ziggy:generate
+```
 
 Generate swagger API documentation available at /api/documentation:
-```./vendor/bin/sail artisan l5-swagger:generate```
+```
+./vendor/bin/sail artisan l5-swagger:generate
+```
